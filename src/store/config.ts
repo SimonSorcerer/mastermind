@@ -1,0 +1,6 @@
+export const config = {
+    MIN_SYMBOL_COUNT: 3,
+    MAX_SYMBOL_COUNT: 10,
+    MIN_SYMBOL_VARIANCE: 3,
+    MAX_SYMBOL_VARIANCE: 26,
+};
