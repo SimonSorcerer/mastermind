@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { generateSecret } from '../helpers/symbolHelpers';
+import { config } from './config';
 
 interface AppState {
     symbolCount: number;
@@ -27,10 +28,14 @@ interface AppStore extends AppState, AppActions {}
 export const useAppStore = create<AppStore>()(
     devtools(
         (set, get) => ({
-            symbolCount: 5,
-            symbolVariance: 5,
+            symbolCount: config.STARTING_SYMBOL_COUNT,
+            symbolVariance: config.STARTING_SYMBOL_VARIANCE,
             repeatedSymbols: false,
-            secret: [],
+            secret: generateSecret(
+                config.STARTING_SYMBOL_COUNT,
+                config.STARTING_SYMBOL_VARIANCE,
+                config.STARTING_REPEATED_SYMBOLS
+            ),
             currentGuess: [],
             history: [],
 

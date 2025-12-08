@@ -5,7 +5,7 @@ export const Debug = () => {
     const { symbolVariance, currentGuess, secret } = useAppStore();
 
     return (
-        <div>
+        <div className='mt-12 text-xl'>
             <p>GUESS: {currentGuess.join('')}</p>
             <p>SECRET: {secret}</p>
             <p>ALLOWED: [ {getAllowedSymbols(symbolVariance).join(' ')} ]</p>

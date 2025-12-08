@@ -7,7 +7,7 @@ export const History = ({}: HistoryProps) => {
     const { history } = useAppStore();
 
     return (
-        <div>
+        <div className='mt-6'>
             {history.map((guess: string[], index: number) => (
                 <BoardRow key={index} guess={guess} showResult={true} />
             ))}
