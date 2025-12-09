@@ -10,6 +10,7 @@ interface AppState {
     secret: string[];
     currentGuess: string[];
     history: string[][];
+    activeKeys: string[];
 }
 
 interface AppActions {
@@ -21,6 +22,7 @@ interface AppActions {
     addToHistory: (guess: string[]) => void;
     getAllowedSymbols: () => string[];
     resetGame: () => void;
+    setActiveKeys: (keys: string[]) => void;
 }
 
 interface AppStore extends AppState, AppActions {}
@@ -38,6 +40,7 @@ export const useAppStore = create<AppStore>()(
             ),
             currentGuess: [],
             history: [],
+            activeKeys: [],
 
             setRepeatedSymbols: (repeatedSymbols) => {
                 if (!repeatedSymbols) {
@@ -113,6 +116,10 @@ export const useAppStore = create<AppStore>()(
                         get().symbolVariance,
                         get().repeatedSymbols
                     ),
+                }),
+            setActiveKeys: (keys) =>
+                set({
+                    activeKeys: keys,
                 }),
         }),
         { name: 'MastermindStore' }

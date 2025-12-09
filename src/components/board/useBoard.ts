@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { act, useEffect } from 'react';
 import { useAppStore } from '../../store/store';
 import { getAllowedSymbols } from '../../helpers/symbolHelpers';
 
@@ -10,6 +10,8 @@ export const useBoard = () => {
         addLetter,
         removeLetter,
         addToHistory,
+        setActiveKeys,
+        activeKeys,
     } = useAppStore();
 
     useEffect(() => {
@@ -33,6 +35,8 @@ export const useBoard = () => {
                     addToHistory(currentGuess);
                 }
             }
+
+            setActiveKeys([key]);
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -45,6 +49,15 @@ export const useBoard = () => {
         removeLetter,
         addToHistory,
     ]);
+
+    useEffect(() => {
+        const handleKeyUp = (e: KeyboardEvent) => {
+            console.log('Released key:', e.key);
+            setActiveKeys([...activeKeys.filter((k) => k !== e.key)]);
+        };
+        window.addEventListener('keyup', handleKeyUp);
+        return () => window.removeEventListener('keyup', handleKeyUp);
+    }, [symbolVariance, activeKeys, setActiveKeys]);
 
     return {
         symbolCount,
