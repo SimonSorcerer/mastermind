@@ -1,4 +1,4 @@
-import { useAppStore } from '../../store/store';
+import { useSettingsStore } from '../../store/settingsStore';
 import { Cell } from './Cell';
 import { RowResult } from './RowResult';
 
@@ -8,7 +8,7 @@ interface BoardRowProps {
 }
 
 export const BoardRow = ({ guess, showResult = false }: BoardRowProps) => {
-    const { symbolCount } = useAppStore();
+    const { symbolCount } = useSettingsStore();
 
     return (
         <div className='flex gap-4'>

@@ -1,13 +1,14 @@
 import { getAllowedSymbols } from '../../../helpers/symbolHelpers';
 import { config } from '../../../store/config';
+import { useSettingsStore } from '../../../store/settingsStore';
 import { useAppStore } from '../../../store/store';
-import { BoardRow } from '../BoardRow';
 import { Cell } from '../Cell';
 
 interface KeyboardProps {}
 
 export const Keyboard = ({}: KeyboardProps) => {
-    const { symbolVariance, activeKeys } = useAppStore();
+    const { symbolVariance } = useSettingsStore();
+    const { activeKeys } = useAppStore();
     const allowedSymbols = getAllowedSymbols(symbolVariance);
     const allSymbols = getAllowedSymbols(config.MAX_SYMBOL_VARIANCE);
 

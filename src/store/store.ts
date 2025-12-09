@@ -1,12 +1,9 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { generateSecret } from '../helpers/symbolHelpers';
-import { config } from './config';
+import { useSettingsStore } from './settingsStore';
 
 interface AppState {
-    symbolCount: number;
-    symbolVariance: number;
-    repeatedSymbols: boolean;
     secret: string[];
     currentGuess: string[];
     history: string[][];
@@ -14,9 +11,6 @@ interface AppState {
 }
 
 interface AppActions {
-    setSymbolCount: (symbolCount: number) => void;
-    setSymbolVariance: (symbolVariance: number) => void;
-    setRepeatedSymbols: (repeatedSymbols: boolean) => void;
     addLetter: (guess: string) => void;
     removeLetter: () => void;
     addToHistory: (guess: string[]) => void;
@@ -27,62 +21,23 @@ interface AppActions {
 
 interface AppStore extends AppState, AppActions {}
 
+// Helper to get current settings
+const getSettings = () => useSettingsStore.getState();
+
 export const useAppStore = create<AppStore>()(
     devtools(
         (set, get) => ({
-            symbolCount: config.STARTING_SYMBOL_COUNT,
-            symbolVariance: config.STARTING_SYMBOL_VARIANCE,
-            repeatedSymbols: false,
             secret: generateSecret(
-                config.STARTING_SYMBOL_COUNT,
-                config.STARTING_SYMBOL_VARIANCE,
-                config.STARTING_REPEATED_SYMBOLS
+                getSettings().symbolCount,
+                getSettings().symbolVariance,
+                getSettings().repeatedSymbols
             ),
             currentGuess: [],
             history: [],
             activeKeys: [],
 
-            setRepeatedSymbols: (repeatedSymbols) => {
-                if (!repeatedSymbols) {
-                    const symbolCount = get().symbolCount;
-                    const symbolVariance = get().symbolVariance;
-
-                    if (symbolCount > symbolVariance) {
-                        set({
-                            symbolVariance: symbolCount,
-                        });
-                    }
-                }
-                set({ repeatedSymbols, currentGuess: [] });
-            },
-            setSymbolCount: (symbolCount) => {
-                const symbolVariance = get().symbolVariance;
-                const updatedVarince =
-                    !get().repeatedSymbols && symbolCount > symbolVariance
-                        ? symbolCount
-                        : symbolVariance;
-
-                set({
-                    symbolCount,
-                    symbolVariance: updatedVarince,
-                    currentGuess: [],
-                });
-            },
-            setSymbolVariance: (symbolVariance) => {
-                const symbolCount = get().symbolCount;
-                const updatedCount =
-                    !get().repeatedSymbols && symbolVariance < symbolCount
-                        ? symbolVariance
-                        : symbolCount;
-
-                set({
-                    symbolVariance,
-                    symbolCount: updatedCount,
-                    currentGuess: [],
-                });
-            },
             addLetter: (guess) => {
-                if (get().currentGuess.length >= get().symbolCount) {
+                if (get().currentGuess.length >= getSettings().symbolCount) {
                     return;
                 }
                 set((state) => ({
@@ -100,7 +55,7 @@ export const useAppStore = create<AppStore>()(
                 })),
             getAllowedSymbols: () => {
                 const symbols: string[] = [];
-                const variance = get().symbolVariance;
+                const variance = getSettings().symbolVariance;
 
                 for (let i = 0; i < variance; i++) {
                     symbols.push(String.fromCharCode(97 + i)); // 'a' is 97 in ASCII
@@ -112,9 +67,9 @@ export const useAppStore = create<AppStore>()(
                     currentGuess: [],
                     history: [],
                     secret: generateSecret(
-                        get().symbolCount,
-                        get().symbolVariance,
-                        get().repeatedSymbols
+                        getSettings().symbolCount,
+                        getSettings().symbolVariance,
+                        getSettings().repeatedSymbols
                     ),
                 }),
             setActiveKeys: (keys) =>

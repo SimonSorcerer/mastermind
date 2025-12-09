@@ -21,6 +21,7 @@ export const Cell = ({
         { 'w-8 h-8': size === 'small' },
         { 'text-lg': size === 'small' },
         { 'text-zinc-400': disabled },
+        { 'opacity-70': disabled },
         { 'bg-zinc-300': pressed && !disabled },
         'border-zinc-300 border rounded-sm',
         'mb-2 text-center flex items-center justify-center font-bold'

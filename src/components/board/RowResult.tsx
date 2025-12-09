@@ -1,4 +1,5 @@
 import { evaluateGuess } from '../../helpers/symbolHelpers';
+import { useSettingsStore } from '../../store/settingsStore';
 import { useAppStore } from '../../store/store';
 
 interface RowResultProps {
@@ -6,7 +7,8 @@ interface RowResultProps {
 }
 
 export const RowResult = ({ guess }: RowResultProps) => {
-    const { symbolCount, secret } = useAppStore();
+    const { symbolCount } = useSettingsStore();
+    const { secret } = useAppStore();
 
     if (guess.length !== symbolCount) {
         return null;

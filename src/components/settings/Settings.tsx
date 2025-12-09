@@ -1,5 +1,6 @@
 import { useAppStore } from '../../store/store';
 import { config } from '../../store/config';
+import { useSettingsStore } from '../../store/settingsStore';
 
 interface SettingsProps {}
 
@@ -12,8 +13,8 @@ export const Settings = ({}: SettingsProps) => {
         setSymbolCount,
         setSymbolVariance,
         setRepeatedSymbols,
-        resetGame,
-    } = useAppStore();
+    } = useSettingsStore();
+    const { resetGame } = useAppStore();
 
     const handleSymbolCountChange = (
         e: React.ChangeEvent<HTMLInputElement>

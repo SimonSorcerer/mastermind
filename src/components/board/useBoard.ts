@@ -1,11 +1,11 @@
-import { act, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppStore } from '../../store/store';
 import { getAllowedSymbols } from '../../helpers/symbolHelpers';
+import { useSettingsStore } from '../../store/settingsStore';
 
 export const useBoard = () => {
+    const { symbolVariance, symbolCount } = useSettingsStore();
     const {
-        symbolCount,
-        symbolVariance,
         currentGuess,
         addLetter,
         removeLetter,
