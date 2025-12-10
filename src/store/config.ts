@@ -6,4 +6,5 @@ export const config = {
     MAX_SYMBOL_VARIANCE: 9,
     STARTING_SYMBOL_VARIANCE: 4,
     STARTING_REPEATED_SYMBOLS: false,
+    STARTING_WORDLE_MODE: false,
 };

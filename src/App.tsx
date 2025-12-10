@@ -8,7 +8,7 @@ function App() {
             <h1 className='pb-8'>Mastermind</h1>
             <div className='flex'>
                 <Board />
-                <Settings />
+                <Settings className='mt-4 max-w-1/3' expanded={true} />
             </div>
             <Debug />
         </div>
