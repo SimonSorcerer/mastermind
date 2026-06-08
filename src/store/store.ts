@@ -15,7 +15,6 @@ interface AppActions {
     addLetter: (guess: string) => void;
     removeLetter: () => void;
     addToHistory: (guess: string[]) => void;
-    getAllowedSymbols: () => string[];
     resetGame: () => void;
     setActiveKeys: (keys: string[]) => void;
 }
@@ -58,15 +57,6 @@ export const useAppStore = create<AppStore>()(
                     currentGuess: [],
                     isWon: won,
                 }));
-            },
-            getAllowedSymbols: () => {
-                const symbols: string[] = [];
-                const variance = getSettings().symbolVariance;
-
-                for (let i = 0; i < variance; i++) {
-                    symbols.push(String.fromCharCode(97 + i)); // 'a' is 97 in ASCII
-                }
-                return symbols;
             },
             resetGame: () =>
                 set({
