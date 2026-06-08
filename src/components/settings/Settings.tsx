@@ -55,22 +55,18 @@ export const Settings = ({ className }: SettingsProps) => {
         setShowDebug(e.target.checked);
     };
 
-    const handleResetGame = () => {
-        resetGame();
-    };
-
     return (
         <div className={className}>
-            <button
-                type='button'
-                className='flex items-center gap-2 pb-4 cursor-pointer'
-                onClick={() => setIsExpanded((v) => !v)}
-            >
-                <h2 className='flex items-center gap-2'>
+            <h2 className='pb-4'>
+                <button
+                    type='button'
+                    className='flex items-center gap-2 cursor-pointer'
+                    onClick={() => setIsExpanded((v) => !v)}
+                >
                     {isExpanded ? <ChevronDown /> : <ChevronRight />}
                     Settings
-                </h2>
-            </button>
+                </button>
+            </h2>
             {isExpanded && (
                 <div className='flex flex-col gap-2 max-w-lg'>
                     <label htmlFor='symbolCount'>
@@ -142,7 +138,7 @@ export const Settings = ({ className }: SettingsProps) => {
                     <button
                         type='button'
                         className='mt-4 border-zinc-400 border rounded-md p-2'
-                        onClick={handleResetGame}
+                        onClick={resetGame}
                     >
                         Reset Game
                     </button>
