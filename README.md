@@ -6,6 +6,16 @@ A keyboard-driven code-breaking puzzle game built with React and TypeScript.
 
 ---
 
+## Screenshots
+
+![Classic mode](public/screenshot2.png)
+
+![Wordle mode](public/screenshot.png)
+
+![Win state](public/screenshot3.png)
+
+---
+
 ## About
 
 This project is a browser implementation of the classic Mastermind game — but instead of coloured pegs, it uses letters. A secret sequence is generated and the player tries to crack it by typing guesses on the keyboard.
@@ -17,16 +27,6 @@ After each submitted guess the player receives feedback:
 The game also supports an optional **Wordle mode**, which colours each cell directly (green / yellow) instead of showing aggregate result pins.
 
 The primary goal of this project was to explore **keyboard-first interaction** — the entire game is played without touching the mouse. A secondary goal was to try **Bun** as a runtime and test runner for the first time.
-
----
-
-## Screenshots
-
-![Classic mode](public/screenshot2.png)
-
-![Wordle mode](public/screenshot.png)
-
-![Win state](public/screenshot3.png)
 
 ---
 
