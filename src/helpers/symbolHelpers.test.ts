@@ -159,3 +159,28 @@ describe('evaluateGuess', () => {
         expect(result.correctSymbol).toBe(3); // second 'a', 'b', 'c'
     });
 });
+
+describe('evaluateGuess positions', () => {
+    it('should mark all positions correct on exact match', () => {
+        const result = evaluateGuess(['a', 'b', 'c'], ['a', 'b', 'c']);
+        expect(result.positions).toEqual(['correct', 'correct', 'correct']);
+    });
+
+    it('should mark all positions absent on no match', () => {
+        const result = evaluateGuess(['d', 'e', 'f'], ['a', 'b', 'c']);
+        expect(result.positions).toEqual(['absent', 'absent', 'absent']);
+    });
+
+    it('should mark misplaced symbols correctly', () => {
+        const result = evaluateGuess(['b', 'a', 'c'], ['a', 'b', 'c']);
+        expect(result.positions).toEqual(['misplaced', 'misplaced', 'correct']);
+    });
+
+    it('should not double-count a symbol already matched in correct position', () => {
+        // secret has one 'a' at index 0 (correct); second 'a' in guess has no remaining match
+        const result = evaluateGuess(['a', 'a', 'd'], ['a', 'b', 'c']);
+        expect(result.positions[0]).toBe('correct');  // 'a' matched in place
+        expect(result.positions[1]).toBe('absent');   // second 'a' — no remaining 'a' in secret
+        expect(result.positions[2]).toBe('absent');   // 'd' not in secret
+    });
+});

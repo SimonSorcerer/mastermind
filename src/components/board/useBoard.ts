@@ -7,6 +7,7 @@ export const useBoard = () => {
     const { symbolVariance, symbolCount } = useSettingsStore();
     const {
         currentGuess,
+        isWon,
         addLetter,
         removeLetter,
         addToHistory,
@@ -16,6 +17,8 @@ export const useBoard = () => {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            if (isWon) return;
+
             const allowedSymbols = getAllowedSymbols(symbolVariance);
             const key = e.key.toLowerCase();
 
@@ -45,6 +48,7 @@ export const useBoard = () => {
         symbolVariance,
         currentGuess,
         symbolCount,
+        isWon,
         addLetter,
         removeLetter,
         addToHistory,
@@ -62,5 +66,6 @@ export const useBoard = () => {
     return {
         symbolCount,
         currentGuess,
+        isWon,
     };
 };

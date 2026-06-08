@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { generateSecret } from '../helpers/symbolHelpers';
+import { generateSecret, evaluateGuess } from '../helpers/symbolHelpers';
 import { useSettingsStore } from './settingsStore';
 
 interface AppState {
@@ -8,6 +8,7 @@ interface AppState {
     currentGuess: string[];
     history: string[][];
     activeKeys: string[];
+    isWon: boolean;
 }
 
 interface AppActions {
@@ -35,6 +36,7 @@ export const useAppStore = create<AppStore>()(
             currentGuess: [],
             history: [],
             activeKeys: [],
+            isWon: false,
 
             addLetter: (guess) => {
                 if (get().currentGuess.length >= getSettings().symbolCount) {
@@ -48,11 +50,15 @@ export const useAppStore = create<AppStore>()(
                 set((state) => ({
                     currentGuess: state.currentGuess.slice(0, -1),
                 })),
-            addToHistory: (guess) =>
+            addToHistory: (guess) => {
+                const { correctPosition } = evaluateGuess(guess, get().secret);
+                const won = correctPosition === getSettings().symbolCount;
                 set((state) => ({
                     history: [guess, ...state.history],
                     currentGuess: [],
-                })),
+                    isWon: won,
+                }));
+            },
             getAllowedSymbols: () => {
                 const symbols: string[] = [];
                 const variance = getSettings().symbolVariance;
@@ -66,6 +72,7 @@ export const useAppStore = create<AppStore>()(
                 set({
                     currentGuess: [],
                     history: [],
+                    isWon: false,
                     secret: generateSecret(
                         getSettings().symbolCount,
                         getSettings().symbolVariance,

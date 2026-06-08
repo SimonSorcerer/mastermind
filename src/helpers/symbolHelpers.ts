@@ -52,8 +52,15 @@ export const evaluateGuess = (guess: string[], secret: string[]) => {
         }
     }
 
+    const positions = guess.map((_, i) => {
+        if (correctPositions.has(i)) return 'correct' as const;
+        if (correctSymbols.has(i)) return 'misplaced' as const;
+        return 'absent' as const;
+    });
+
     return {
         correctPosition: correctPositions.size,
         correctSymbol: correctSymbols.size,
+        positions,
     };
 };

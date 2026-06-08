@@ -25,18 +25,21 @@ export const Settings = ({ className, expanded = false }: SettingsProps) => {
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         setSymbolCount(Number(e.target.value));
+        resetGame();
     };
 
     const handleSymbolVarianceChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         setSymbolVariance(Number(e.target.value));
+        resetGame();
     };
 
     const handleRepeatedSymbolsChange = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         setRepeatedSymbols(e.target.checked);
+        resetGame();
     };
 
     const handleWordleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
