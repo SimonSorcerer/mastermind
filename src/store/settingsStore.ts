@@ -7,6 +7,7 @@ interface SettingsState {
     symbolVariance: number;
     repeatedSymbols: boolean;
     wordleMode: boolean;
+    showDebug: boolean;
 }
 
 interface SettingsActions {
@@ -14,6 +15,7 @@ interface SettingsActions {
     setSymbolVariance: (symbolVariance: number) => void;
     setRepeatedSymbols: (repeatedSymbols: boolean) => void;
     setWordleMode: (wordleMode: boolean) => void;
+    setShowDebug: (showDebug: boolean) => void;
     resetSettings: () => void;
 }
 
@@ -24,6 +26,7 @@ const initialState: SettingsState = {
     symbolVariance: config.STARTING_SYMBOL_VARIANCE,
     repeatedSymbols: config.STARTING_REPEATED_SYMBOLS,
     wordleMode: config.STARTING_WORDLE_MODE,
+    showDebug: config.STARTING_SHOW_DEBUG,
 };
 
 export const useSettingsStore = create<SettingsStore>()(
@@ -73,6 +76,10 @@ export const useSettingsStore = create<SettingsStore>()(
 
             setWordleMode: (wordleMode) => {
                 set({ wordleMode });
+            },
+
+            setShowDebug: (showDebug) => {
+                set({ showDebug });
             },
 
             resetSettings: () => set(initialState),

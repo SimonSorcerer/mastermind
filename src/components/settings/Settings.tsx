@@ -17,10 +17,12 @@ export const Settings = ({ className }: SettingsProps) => {
         symbolVariance,
         repeatedSymbols,
         wordleMode,
+        showDebug,
         setSymbolCount,
         setSymbolVariance,
         setRepeatedSymbols,
         setWordleMode,
+        setShowDebug,
     } = useSettingsStore();
     const { resetGame } = useAppStore();
 
@@ -47,6 +49,10 @@ export const Settings = ({ className }: SettingsProps) => {
 
     const handleWordleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setWordleMode(e.target.checked);
+    };
+
+    const handleShowDebugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setShowDebug(e.target.checked);
     };
 
     const handleResetGame = () => {
@@ -115,6 +121,18 @@ export const Settings = ({ className }: SettingsProps) => {
                             onChange={handleWordleModeChange}
                         />
                         Enable Wordle mode (direct feedback - easier)
+                    </label>
+
+                    <label htmlFor='showDebug'>
+                        <input
+                            type='checkbox'
+                            id='showDebug'
+                            name='showDebug'
+                            checked={showDebug}
+                            className='mr-2'
+                            onChange={handleShowDebugChange}
+                        />
+                        Show debug information
                     </label>
 
                     <p className='mt-4 opacity-60'>

@@ -7,4 +7,5 @@ export const config = {
     STARTING_SYMBOL_VARIANCE: 4,
     STARTING_REPEATED_SYMBOLS: false,
     STARTING_WORDLE_MODE: false,
+    STARTING_SHOW_DEBUG: true,
 };
