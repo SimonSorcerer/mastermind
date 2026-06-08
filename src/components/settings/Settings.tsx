@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAppStore } from '../../store/store';
 import { config } from '../../store/config';
 import { useSettingsStore } from '../../store/settingsStore';
+import { ChevronDown, ChevronRight } from '../icons/Icons';
 
 interface SettingsProps {
     className?: string;
@@ -59,7 +60,10 @@ export const Settings = ({ className }: SettingsProps) => {
                 className='flex items-center gap-2 pb-4 cursor-pointer'
                 onClick={() => setIsExpanded((v) => !v)}
             >
-                <h2>{isExpanded ? '▾' : '▸'} Settings</h2>
+                <h2 className='flex items-center gap-2'>
+                    {isExpanded ? <ChevronDown /> : <ChevronRight />}
+                    Settings
+                </h2>
             </button>
             {isExpanded && (
                 <div className='flex flex-col gap-2 max-w-lg'>
