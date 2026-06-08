@@ -17,12 +17,12 @@ export const RowResult = ({ guess }: RowResultProps) => {
     const results = evaluateGuess(guess, secret);
 
     return (
-        <div className='max-w-20 flex gap-1'>
+        <div className='flex flex-wrap gap-1 content-start max-w-12'>
             {Array.from({ length: results.correctPosition }, (_, i) => (
-                <div key={i}>X</div>
+                <div key={`pos-${i}`} className='w-4 h-4 rounded-sm bg-white' />
             ))}
             {Array.from({ length: results.correctSymbol }, (_, i) => (
-                <div key={i}>O</div>
+                <div key={`sym-${i}`} className='w-4 h-4 rounded-sm bg-zinc-500' />
             ))}
         </div>
     );
