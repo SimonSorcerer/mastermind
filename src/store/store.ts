@@ -21,7 +21,6 @@ interface AppActions {
 
 interface AppStore extends AppState, AppActions {}
 
-// Helper to get current settings
 const getSettings = () => useSettingsStore.getState();
 
 export const useAppStore = create<AppStore>()(
