@@ -36,14 +36,14 @@ export const useSettingsStore = create<SettingsStore>()(
 
             setSymbolCount: (symbolCount) => {
                 const symbolVariance = get().symbolVariance;
-                const updatedVarince =
+                const updatedVariance =
                     !get().repeatedSymbols && symbolCount > symbolVariance
                         ? symbolCount
                         : symbolVariance;
 
                 set({
                     symbolCount,
-                    symbolVariance: updatedVarince,
+                    symbolVariance: updatedVariance,
                 });
             },
 
