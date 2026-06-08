@@ -12,12 +12,9 @@ export const Keyboard = ({}: KeyboardProps) => {
     const allowedSymbols = getAllowedSymbols(symbolVariance);
     const allSymbols = getAllowedSymbols(config.MAX_SYMBOL_VARIANCE);
 
-    const firstRow = allSymbols.filter(
-        (_, i) => i < config.MAX_SYMBOL_VARIANCE / 2
-    );
-    const secondRow = allSymbols.filter(
-        (_, i) => i >= config.MAX_SYMBOL_VARIANCE / 2
-    );
+    const splitAt = Math.floor(config.MAX_SYMBOL_VARIANCE / 2);
+    const firstRow = allSymbols.filter((_, i) => i < splitAt);
+    const secondRow = allSymbols.filter((_, i) => i >= splitAt);
 
     return (
         <div className='mt-8'>
