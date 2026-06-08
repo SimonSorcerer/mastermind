@@ -17,7 +17,7 @@ export const RowResult = ({ guess }: RowResultProps) => {
     const results = evaluateGuess(guess, secret);
 
     return (
-        <div className='flex flex-wrap gap-1 content-start max-w-12'>
+        <div className='flex flex-wrap gap-1 content-start max-w-12 mt-[2px] mb-[8px] shrink-0'>
             {Array.from({ length: results.correctPosition }, (_, i) => (
                 <div key={`pos-${i}`} className='w-4 h-4 rounded-sm bg-white' />
             ))}
