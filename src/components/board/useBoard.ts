@@ -27,17 +27,14 @@ export const useBoard = () => {
             const key = e.key.toLowerCase();
 
             if (allowedSymbols.includes(key)) {
-                console.log('Pressed key:', key);
                 addLetter(key);
             }
 
             if (e.key === 'Backspace' || e.key === 'Delete') {
-                console.log('Pressed Backspace or Delete');
                 removeLetter();
             }
 
             if (e.key === 'Enter') {
-                console.log('Pressed Enter');
                 if (currentGuess.length === symbolCount) {
                     addToHistory(currentGuess);
                 }
@@ -61,7 +58,6 @@ export const useBoard = () => {
 
     useEffect(() => {
         const handleKeyUp = (e: KeyboardEvent) => {
-            console.log('Released key:', e.key);
             setActiveKeys([...activeKeys.filter((k) => k !== e.key)]);
         };
         window.addEventListener('keyup', handleKeyUp);
