@@ -54,6 +54,7 @@ export const useBoard = () => {
         removeLetter,
         addToHistory,
         resetGame,
+        setActiveKeys,
     ]);
 
     useEffect(() => {
