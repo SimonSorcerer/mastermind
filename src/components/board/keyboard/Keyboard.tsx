@@ -4,9 +4,7 @@ import { useSettingsStore } from '../../../store/settingsStore';
 import { useAppStore } from '../../../store/store';
 import { Cell } from '../Cell';
 
-interface KeyboardProps {}
-
-export const Keyboard = ({}: KeyboardProps) => {
+export const Keyboard = () => {
     const { symbolVariance } = useSettingsStore();
     const { activeKeys } = useAppStore();
     const allowedSymbols = getAllowedSymbols(symbolVariance);

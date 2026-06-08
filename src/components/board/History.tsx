@@ -1,9 +1,7 @@
 import { useAppStore } from '../../store/store';
 import { BoardRow } from './BoardRow';
 
-interface HistoryProps {}
-
-export const History = ({}: HistoryProps) => {
+export const History = () => {
     const { history } = useAppStore();
 
     return (

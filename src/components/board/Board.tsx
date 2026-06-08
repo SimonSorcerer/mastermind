@@ -4,9 +4,7 @@ import { Keyboard } from './keyboard/Keyboard';
 import { useBoard } from './useBoard';
 import { useAppStore } from '../../store/store';
 
-interface BoardProps {}
-
-export const Board = ({}: BoardProps) => {
+export const Board = () => {
     const { currentGuess, isWon } = useBoard();
     const { history, resetGame } = useAppStore();
 
