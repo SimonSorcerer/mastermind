@@ -8,15 +8,24 @@ interface BoardProps {}
 
 export const Board = ({}: BoardProps) => {
     const { currentGuess, isWon } = useBoard();
-    const { history } = useAppStore();
+    const { history, resetGame } = useAppStore();
 
     return (
         <div className='grow'>
             {isWon ? (
-                <p className='mb-4 font-bold'>
-                    You cracked it in {history.length}{' '}
-                    {history.length === 1 ? 'guess' : 'guesses'}!
-                </p>
+                <div className='mb-4'>
+                    <p className='font-bold'>
+                        You cracked it in {history.length}{' '}
+                        {history.length === 1 ? 'guess' : 'guesses'}!
+                    </p>
+                    <button
+                        type='button'
+                        className='mt-2 border-zinc-400 border rounded-md px-4 py-2'
+                        onClick={resetGame}
+                    >
+                        New Game
+                    </button>
+                </div>
             ) : (
                 <BoardRow guess={currentGuess} />
             )}

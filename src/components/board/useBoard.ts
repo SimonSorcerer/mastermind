@@ -11,13 +11,17 @@ export const useBoard = () => {
         addLetter,
         removeLetter,
         addToHistory,
+        resetGame,
         setActiveKeys,
         activeKeys,
     } = useAppStore();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (isWon) return;
+            if (isWon) {
+                if (e.key === 'Enter') resetGame();
+                return;
+            }
 
             const allowedSymbols = getAllowedSymbols(symbolVariance);
             const key = e.key.toLowerCase();
@@ -52,6 +56,7 @@ export const useBoard = () => {
         addLetter,
         removeLetter,
         addToHistory,
+        resetGame,
     ]);
 
     useEffect(() => {
