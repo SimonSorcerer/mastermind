@@ -8,11 +8,18 @@ A keyboard-driven code-breaking puzzle game built with React and TypeScript.
 
 ## Screenshots
 
-![Classic mode](public/screenshot2.png)
-
-![Wordle mode](public/screenshot.png)
-
-![Win state](public/screenshot3.png)
+<table>
+  <tr>
+    <td><a href="public/screenshot2.png"><img src="public/screenshot2.png" width="280" alt="Classic mode"/></a></td>
+    <td><a href="public/screenshot.png"><img src="public/screenshot.png" width="280" alt="Wordle mode"/></a></td>
+    <td><a href="public/screenshot3.png"><img src="public/screenshot3.png" width="280" alt="Win state"/></a></td>
+  </tr>
+  <tr>
+    <td align="center">Classic mode</td>
+    <td align="center">Wordle mode</td>
+    <td align="center">Win state</td>
+  </tr>
+</table>
 
 ---
 
