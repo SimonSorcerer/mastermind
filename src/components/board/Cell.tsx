@@ -5,6 +5,7 @@ interface CellProps {
     size?: 'small' | 'large';
     disabled?: boolean;
     pressed?: boolean;
+    result?: 'correct' | 'misplaced' | 'absent';
 }
 
 export const Cell = ({
@@ -12,6 +13,7 @@ export const Cell = ({
     size = 'large',
     disabled = false,
     pressed = false,
+    result,
 }: CellProps) => {
     const letter = val?.toUpperCase() || '';
 
@@ -23,6 +25,8 @@ export const Cell = ({
         { 'text-zinc-400': disabled },
         { 'opacity-70': disabled },
         { 'bg-zinc-300': pressed && !disabled },
+        { 'bg-green-500 !border-green-500 text-white': result === 'correct' },
+        { 'bg-yellow-400 !border-yellow-400 text-white': result === 'misplaced' },
         'border-zinc-300 border rounded-sm',
         'mb-2 text-center flex items-center justify-center font-bold'
     );
