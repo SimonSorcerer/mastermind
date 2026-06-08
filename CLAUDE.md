@@ -54,7 +54,7 @@ Settings setters enforce invariants: when `repeatedSymbols` is false, `symbolCou
 - **Wordle mode feedback**: `wordleMode` setting is wired but `RowResult` and `Cell` don't implement per-cell coloring yet. The intent is green (correct position) / yellow (wrong position) coloring per cell instead of aggregate X/O counts
 - **On-screen keyboard has no click handlers** — `Keyboard.tsx` is a visual indicator only
 - **`src/store/actions.ts`** is an empty placeholder file
-- **`Debug.tsx`** intentionally exposes the secret code — dev-only component, not yet gated by env variable
+- **`Debug.tsx`** intentionally exposes the secret code — this is fine for a demonstrational project
 
 ## Known Bugs
 
