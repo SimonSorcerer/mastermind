@@ -1,3 +1,5 @@
+import type { CellResult } from '../types';
+
 export const getAllowedSymbols = (variance: number) => {
     const symbols: string[] = [];
 
@@ -52,10 +54,10 @@ export const evaluateGuess = (guess: string[], secret: string[]) => {
         }
     }
 
-    const positions = guess.map((_, i) => {
-        if (correctPositions.has(i)) return 'correct' as const;
-        if (correctSymbols.has(i)) return 'misplaced' as const;
-        return 'absent' as const;
+    const positions: CellResult[] = guess.map((_, i) => {
+        if (correctPositions.has(i)) return 'correct';
+        if (correctSymbols.has(i)) return 'misplaced';
+        return 'absent';
     });
 
     return {

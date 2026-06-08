@@ -1,11 +1,12 @@
 import cx from 'classnames';
+import type { CellResult } from '../../types';
 
 interface CellProps {
     val: string | undefined;
     size?: 'small' | 'large';
     disabled?: boolean;
     pressed?: boolean;
-    result?: 'correct' | 'misplaced' | 'absent';
+    result?: CellResult;
 }
 
 export const Cell = ({
