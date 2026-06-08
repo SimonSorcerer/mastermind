@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import { useAppStore } from '../../store/store';
 import { config } from '../../store/config';
 import { useSettingsStore } from '../../store/settingsStore';
 
 interface SettingsProps {
     className?: string;
-    expanded?: boolean;
 }
 
-export const Settings = ({ className, expanded = false }: SettingsProps) => {
+export const Settings = ({ className }: SettingsProps) => {
+    const [isExpanded, setIsExpanded] = useState(true);
+
     const { MIN_SYMBOL_COUNT, MAX_SYMBOL_COUNT, MIN_SYMBOL_VARIANCE, MAX_SYMBOL_VARIANCE } = config;
     const {
         symbolCount,
@@ -52,8 +54,14 @@ export const Settings = ({ className, expanded = false }: SettingsProps) => {
 
     return (
         <div className={className}>
-            <h2 className='pb-4'>Settings</h2>
-            {expanded && (
+            <button
+                type='button'
+                className='flex items-center gap-2 pb-4 cursor-pointer'
+                onClick={() => setIsExpanded((v) => !v)}
+            >
+                <h2>{isExpanded ? '▾' : '▸'} Settings</h2>
+            </button>
+            {isExpanded && (
                 <div className='flex flex-col gap-2 max-w-lg'>
                     <label htmlFor='symbolCount'>
                         Symbol count: {symbolCount}
