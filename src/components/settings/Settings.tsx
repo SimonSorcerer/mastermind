@@ -8,7 +8,7 @@ interface SettingsProps {
 }
 
 export const Settings = ({ className, expanded = false }: SettingsProps) => {
-    const { MIN_SYMBOL_COUNT, MAX_SYMBOL_COUNT } = config;
+    const { MIN_SYMBOL_COUNT, MAX_SYMBOL_COUNT, MIN_SYMBOL_VARIANCE, MAX_SYMBOL_VARIANCE } = config;
     const {
         symbolCount,
         symbolVariance,
@@ -72,8 +72,8 @@ export const Settings = ({ className, expanded = false }: SettingsProps) => {
                         type='range'
                         id='symbolVariance'
                         name='symbolVariance'
-                        min={MIN_SYMBOL_COUNT}
-                        max={MAX_SYMBOL_COUNT}
+                        min={MIN_SYMBOL_VARIANCE}
+                        max={MAX_SYMBOL_VARIANCE}
                         value={symbolVariance}
                         onChange={handleSymbolVarianceChange}
                     />
